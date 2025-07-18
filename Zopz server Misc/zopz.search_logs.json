@@ -1,0 +1,123 @@
+[{
+  "_id": {
+    "$oid": "6840c0873e63aa4a6251fa98"
+  },
+  "username": "zopz",
+  "param": "1.1.1.1",
+  "command": "shoden",
+  "count": 269,
+  "last_ip": "172.68.55.134",
+  "last_timestamp": {
+    "$date": "2025-06-04T21:55:55.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6840c08a3e63aa4a6251fa99"
+  },
+  "username": "Kiro",
+  "param": "65.217.201.4",
+  "command": "iplookup",
+  "count": 63,
+  "last_ip": "172.69.224.36",
+  "last_timestamp": {
+    "$date": "2025-06-04T21:54:18.046Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6840c0be3e63aa4a6251fa9a"
+  },
+  "username": "Kiro",
+  "param": "65.217.201.4",
+  "command": "breachsearch",
+  "count": 1,
+  "last_ip": "172.70.86.76",
+  "last_timestamp": {
+    "$date": "2025-06-04T21:55:10.428Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6840c23d3e63aa4a6251fa9b"
+  },
+  "username": "dodisharmless",
+  "count": 3
+},
+{
+  "_id": {
+    "$oid": "68410ee23e63aa4a6251fa9c"
+  },
+  "username": "repercing",
+  "count": 128
+},
+{
+  "_id": {
+    "$oid": "6841faf33e63aa4a6251fa9d"
+  },
+  "username": "cinnamonroll",
+  "count": 1
+},
+{
+  "_id": {
+    "$oid": "68421c533e63aa4a6251fa9e"
+  },
+  "username": "freeplan",
+  "count": 44
+},
+{
+  "_id": {
+    "$oid": "68425e713e63aa4a6251fa9f"
+  },
+  "username": "parker",
+  "count": 41
+},
+{
+  "_id": {
+    "$oid": "68432b843e63aa4a6251faa0"
+  },
+  "username": "zhds",
+  "count": 24
+},
+{
+  "_id": {
+    "$oid": "6843f7b43e63aa4a6251faa1"
+  },
+  "username": "xx3",
+  "count": 17
+},
+{
+  "_id": {
+    "$oid": "68464c933e63aa4a6251faa2"
+  },
+  "username": "CeeCee",
+  "count": 52
+},
+{
+  "_id": {
+    "$oid": "684656ad3e63aa4a6251faa3"
+  },
+  "username": "qweqwewq",
+  "count": 9
+},
+{
+  "_id": {
+    "$oid": "6847b3323e63aa4a6251faa4"
+  },
+  "username": "rootsec",
+  "count": 1
+},
+{
+  "_id": {
+    "$oid": "68484dc93e63aa4a6251faa5"
+  },
+  "username": "Xaejw",
+  "count": 26
+},
+{
+  "_id": {
+    "$oid": "68484fd03e63aa4a6251faa6"
+  },
+  "username": "kfc",
+  "count": 3
+}]
