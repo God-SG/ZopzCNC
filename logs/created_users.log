@@ -1,0 +1,4 @@
+[2025-06-24T20:41:48.020Z] Created new user {"createdBy":"root","newUser":"odieapi","maxTime":60,"concurrents":1,"expiryDate":"07/24/2025","role":"user","admin":false,"reseller":false,"vip":false}
+[2025-06-26T17:10:14.161Z] Created new user {"createdBy":"root","newUser":"testers","maxTime":86400,"concurrents":5,"expiryDate":"07/26/2025","role":"user","admin":false,"reseller":false,"vip":false}
+[2025-06-26T21:37:39.316Z] Created new user {"createdBy":"root","newUser":"dalas","maxTime":60,"concurrents":1,"expiryDate":"07/26/2025","role":"user","admin":false,"reseller":false,"vip":false}
+[2025-06-29T10:13:58.188Z] Created new user {"createdBy":"root","newUser":"enzos","maxTime":60,"concurrents":1,"expiryDate":"07/29/2025","role":"user","admin":false,"reseller":false,"vip":false}

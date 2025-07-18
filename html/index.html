@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOPZ Services - Professional Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.22.5/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #3B82F6;
+            --secondary-blue: #60A5FA;
+            --accent-blue: #93C5FD;
+            --dark-blue: #1E40AF;
+            --light-blue: #DBEAFE;
+            --dark-bg: #0A0A0A;
+            --card-bg: rgba(15, 15, 15, 0.8);
+            --border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--dark-bg);
+            min-height: 100vh;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .network-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .network-canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .professional-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .professional-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(59, 130, 246, 0.3);
+        }
+
+        .nav-container {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 8px;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-button {
+            border-radius: 12px;
+            padding: 14px 24px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            white-space: nowrap;
+            min-width: fit-content;
+        }
+
+        .nav-button:hover {
+            color: white;
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .nav-button.active {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .primary-button {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 28px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .primary-button:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .secondary-button {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            border-radius: 12px;
+            padding: 12px 26px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .secondary-button:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tab-content {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            margin-bottom: 48px;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 32px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: white;
+            text-align: center;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stats-container {
+            text-align: center;
+            padding: 32px 24px;
+        }
+
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stats-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 8px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .price-tag {
+            background: var(--primary-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-block;
+            margin: 16px 0;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            position: relative;
+            padding-left: 28px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .badge {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid var(--primary-blue);
+            color: var(--primary-blue);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin: 8px 0;
+        }
+
+        .limited-availability {
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid #EF4444;
+            color: #EF4444;
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 24px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .payment-methods {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid var(--primary-blue);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .contact-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .contact-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--secondary-blue);
+            text-decoration: underline;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .resource-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .resource-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 6px;
+                gap: 4px;
+            }
+            
+            .nav-button {
+                padding: 12px 18px;
+                font-size: 13px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .primary-button, .secondary-button {
+                width: 200px;
+            }
+
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-button {
+                padding: 10px 14px;
+                font-size: 12px;
+            }
+
+            .stats-container {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="network-background">
+        <canvas class="network-canvas" id="networkCanvas"></canvas>
+    </div>
+    
+    <div id="root"></div>
+    
+    <script>
+        // Network animation with blue theme
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        const nodes = [];
+        const nodeCount = 50;
+        
+        for (let i = 0; i < nodeCount; i++) {
+            nodes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                radius: Math.random() * 2 + 1
+            });
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Update nodes
+            nodes.forEach(node => {
+                node.x += node.vx;
+                node.y += node.vy;
+                
+                if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+            });
+            
+            // Draw connections with blue theme
+            ctx.strokeStyle = 'rgba(59, 130, 246, 0.2)';
+            ctx.lineWidth = 1;
+            
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            // Draw nodes with blue theme
+            ctx.fillStyle = 'rgba(59, 130, 246, 0.8)';
+            nodes.forEach(node => {
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+    </script>
+    
+    <script type="text/babel">
+        const plansData = {
+            zopzC2: [
+                { level: 1, concurrents: 1, seconds: 60, price: "$20.00 Monthly", type: "Basic" },
+                { level: 2, concurrents: 3, seconds: 120, price: "$40.00 Monthly", type: "Basic" },
+                { level: 3, concurrents: 4, seconds: 300, price: "$80.00 Monthly", type: "Basic" },
+                { level: 1, concurrents: 1, seconds: 60, price: "$250.00 Lifetime", type: "Basic" },
+                { level: 2, concurrents: 3, seconds: 120, price: "$300.00 Lifetime", type: "Basic" },
+                { level: 3, concurrents: 4, seconds: 300, price: "$500.00 Lifetime", type: "Basic" },
+                { level: 1, concurrents: 5, seconds: 86400, price: "$60.00 Monthly", type: "HomeHolder" },
+                { level: 2, concurrents: 6, seconds: 86400, price: "$70.00 Monthly", type: "HomeHolder" },
+                { level: 3, concurrents: 7, seconds: 86400, price: "$80.00 Monthly", type: "HomeHolder" },
+                { level: 4, concurrents: 10, seconds: 86400, price: "$100.00 Monthly", type: "HomeHolder" },
+                { level: 1, concurrents: 3, seconds: 432000, price: "$60.00 Monthly", type: "5 Day HomeHolder" },
+                { level: 2, concurrents: 6, seconds: 432000, price: "$120.00 Monthly", type: "5 Day HomeHolder" },
+                { level: 3, concurrents: 7, seconds: 432000, price: "$140.00 Monthly", type: "5 Day HomeHolder" },
+                { level: 4, concurrents: 10, seconds: 432000, price: "$180.00 Monthly", type: "5 Day HomeHolder" },
+                { name: "VIP Access", price: "$60.00 Monthly", type: "Add-on" },
+                { name: "Extra Time (60s)", price: "$10.00 Monthly", type: "Add-on" },
+                { name: "Extra Concurrent", price: "$10.00 Monthly", type: "Add-on" },
+                { name: "Spam Bypass", price: "$80.00 Monthly", type: "Add-on" },
+                { name: "Blacklist Bypass", price: "$100.00 Monthly", type: "Add-on" },
+                { name: "VIP Access", price: "$120.00 Lifetime", type: "Lifetime Add-on" },
+                { name: "Extra Time (60s)", price: "$40.00 Lifetime", type: "Lifetime Add-on" },
+                { name: "Extra Concurrent", price: "$70.00 Lifetime", type: "Lifetime Add-on" },
+                { name: "Spam Bypass", price: "$200.00 Lifetime", type: "Lifetime Add-on" },
+                { name: "Blacklist Bypass", price: "$200.00 Lifetime", type: "Lifetime Add-on" },
+            ],
+            zopzAPI: [
+                { level: 1, concurrents: 1, seconds: 60, price: "$20.00 Monthly", type: "Basic" },
+                { level: 2, concurrents: 3, seconds: 120, price: "$40.00 Monthly", type: "Basic" },
+                { level: 3, concurrents: 4, seconds: 300, price: "$80.00 Monthly", type: "Basic" },
+                { level: 1, concurrents: 5, seconds: 86400, price: "$60.00 Monthly", type: "HomeHolder" },
+                { level: 2, concurrents: 6, seconds: 86400, price: "$70.00 Monthly", type: "HomeHolder" },
+                { level: 3, concurrents: 7, seconds: 86400, price: "$80.00 Monthly", type: "HomeHolder" },
+                { level: 4, concurrents: 10, seconds: 86400, price: "$100.00 Monthly", type: "HomeHolder" },
+                { level: 1, concurrents: 3, seconds: 432000, price: "$60.00 Monthly", type: "5 Day HomeHolder" },
+                { level: 2, concurrents: 6, seconds: 432000, price: "$120.00 Monthly", type: "5 Day HomeHolder" },
+                { level: 3, concurrents: 7, seconds: 432000, price: "$140.00 Monthly", type: "5 Day HomeHolder" },
+                { level: 4, concurrents: 10, seconds: 432000, price: "$180.00 Monthly", type: "5 Day HomeHolder" },
+                { name: "VIP Access", price: "$60.00 Monthly", type: "Add-on" },
+                { name: "Extra Time (60s)", price: "$10.00 Monthly", type: "Add-on" },
+                { name: "Extra Concurrent", price: "$10.00 Monthly", type: "Add-on" },
+                { name: "Spam Bypass", price: "$80.00 Monthly", type: "Add-on" },
+                { name: "Blacklist Bypass", price: "$100.00 Monthly", type: "Add-on" },
+                { name: "VIP Access", price: "$120.00 Lifetime", type: "Lifetime Add-on" },
+                { name: "Extra Time (60s)", price: "$40.00 Lifetime", type: "Lifetime Add-on" },
+                { name: "Extra Concurrent", price: "$70.00 Lifetime", type: "Lifetime Add-on" },
+                { name: "Spam Bypass", price: "$200.00 Lifetime", type: "Lifetime Add-on" },
+                { name: "Blacklist Bypass", price: "$200.00 Lifetime", type: "Lifetime Add-on" },
+            ],
+            zopzTLO: [
+                { name: "Monthly", price: "$20.00 Monthly", searches: "Unlimited" },
+                { name: "3 Months", price: "$50.00", searches: "Unlimited" },
+                { name: "Yearly", price: "$100.00 Yearly", searches: "Unlimited" },
+                { name: "Lifetime", price: "$250.00 Lifetime", searches: "Unlimited" },
+            ],
+            zopzCNC: [
+                { name: "AIO", price: "$200.00 Lifetime", type: "Lifetime" },
+                { name: "AIO", price: "$10.00 Monthly", type: "Monthly" },
+                { name: "Key Reset", price: "$10.00 Per Reset", type: "" },
+                { name: "Support", price: "$10.00 - $15.00", type: "" },
+            ],
+        };
+
+        const showcaseData = [
+            {
+                title: "ZOPZ C2",
+                image: "https://zopzsniff.xyz/assets/zopzfiles/zopzc2.png",
+                icon: "https://zopzsniff.xyz/assets/zopzfiles/zopzc2.png",
+                description: "Ultimate solution for secure, powerful, and affordable command-and-control services. With a strict no-logs policy, your data stays private, while our 99% uptime guarantee ensures unmatched reliability."
+            },
+            {
+                title: "ZOPZ API",
+                image: "https://zopzsniff.xyz/assets/zopzfiles/zopzapi.png",
+                icon: "https://zopzsniff.xyz/assets/zopzfiles/zopzapi.png",
+                description: "Secure, powerful, budget-friendly command-and-control with no-logs, 99.9% uptime, advanced multi-API broadcasting, and instant crypto payments."
+            },
+            {
+                title: "ZOPZ TLO",
+                image: "https://zopzsniff.xyz/assets/zopzfiles/zopztlo.png",
+                icon: "https://zopzsniff.xyz/assets/zopzfiles/zopztlo.png",
+                description: "The most robust data-searching tools, making it effortless to browse public information online with unlimited searches."
+            },
+            {
+                title: "ZOPZ CNC",
+                image: "https://zopzsniff.xyz/assets/zopzfiles/zopzc2.png",
+                icon: "https://zopzsniff.xyz/assets/zopzfiles/zopzc2.png",
+                description: "Advanced CNC control system with comprehensive features. Real-time monitoring, advanced analytics, and seamless integration capabilities."
+            },
+            {
+                title: "ZOPZ SNIFF",
+                image: "https://zopzsniff.xyz/assets/zopzfiles/zopzsniff.png",
+                icon: "https://zopzsniff.xyz/assets/zopzfiles/zopzsniff.png",
+                description: "Robust network sniffing tool tailored for gamers, offering advanced features like AI-driven username decryption for multiple platforms."
+            },
+            {
+                title: "ZOPZ Proxy",
+                image: "https://zopzsniff.xyz/assets/zopzfiles/zopzproxy.png",
+                icon: "https://zopzsniff.xyz/assets/zopzfiles/zopzproxy.png",
+                description: "Fast, reliable, and scalable backend proxy service with unlimited concurrents, high-speed routing, and DDoS protection options."
+            }
+        ];
+
+        const PlanCard = ({ title, plans }) => {
+            if (!plans || !Array.isArray(plans)) return null;
+            return (
+                <div className="mb-12">
+                    <h2 className="section-title">{title}</h2>
+                    <div className="grid-layout">
+                        {plans.map((plan, index) => (
+                            <div key={index} className="professional-card">
+                                <div className="stats-container">
+                                    <h3 className="text-lg font-semibold mb-3 text-white">
+                                        {plan.level ? `Level ${plan.level}` : plan.name}
+                                    </h3>
+                                    {plan.type && <div className="badge">{plan.type}</div>}
+                                    
+                                    {plan.concurrents && (
+                                        <div className="mb-3">
+                                            <div className="stats-number">{plan.concurrents}</div>
+                                            <div className="stats-label">Concurrents</div>
+                                        </div>
+                                    )}
+                                    {plan.seconds && (
+                                        <div className="mb-3">
+                                            <div className="stats-number">{plan.seconds.toLocaleString()}</div>
+                                            <div className="stats-label">Seconds</div>
+                                        </div>
+                                    )}
+                                    {plan.searches && (
+                                        <div className="mb-3">
+                                            <div className="stats-number">∞</div>
+                                            <div className="stats-label">Searches</div>
+                                        </div>
+                                    )}
+                                    
+                                    <div className="price-tag">{plan.price}</div>
+                                    <div className="mt-6">
+                                        <a
+                                            href="https://t.me/+4GM4Vn1q8YA3MWNh"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="primary-button"
+                                        >
+                                            Get Started
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const ShowcaseCard = ({ title, icon, image, description }) => (
+            <div className="professional-card">
+                <div className="stats-container">
+                    {icon && <img src={icon || "/placeholder.svg"} alt={`${title} icon`} className="w-16 h-16 mx-auto mb-4 rounded-lg" />}
+                    <h3 className="text-xl font-semibold mb-4 text-white">{title}</h3>
+                    {image && <img src={image || "/placeholder.svg"} alt={title} className="w-full h-40 object-cover rounded-lg mb-4" />}
+                    <p className="text-gray-300 text-sm leading-relaxed">{description}</p>
+                </div>
+            </div>
+        );
+
+        const App = () => {
+            const [activeTab, setActiveTab] = React.useState('zopzC2');
+
+            return (
+                <div className="min-h-screen">
+                    <div className="container mx-auto px-6 py-12 max-w-7xl">
+                        <header className="text-center mb-16">
+                            <h1 className="hero-title">
+                                Next-Gen Services for <span style={{color: 'var(--primary-blue)'}}>Your Infrastructure</span>
+                            </h1>
+                            <p className="hero-subtitle">
+                                Enterprise-grade solutions, advanced protection, and comprehensive tools for businesses of all sizes
+                            </p>
+                            <div className="hero-buttons">
+                                <a href="#services" className="primary-button">Get Started</a>
+                                <a href="#showcase" className="secondary-button">Learn More</a>
+                            </div>
+                        </header>
+
+                        <nav className="flex justify-center mb-12" id="services">
+                            <div className="nav-container">
+                                {['zopzC2', 'zopzAPI', 'zopzTLO', 'zopzCNC', 'zopzproxy', 'showcase', 'contact'].map((tab) => (
+                                    <button
+                                        key={tab}
+                                        className={`nav-button ${
+                                            activeTab === tab ? 'active' : ''
+                                        }`}
+                                        onClick={() => setActiveTab(tab)}
+                                    >
+                                        {tab === 'zopzC2' ? 'ZOPZ C2' : 
+                                         tab === 'zopzAPI' ? 'ZOPZ API' : 
+                                         tab === 'zopzTLO' ? 'ZOPZ TLO' : 
+                                         tab === 'zopzCNC' ? 'ZOPZ CNC' :
+                                         tab === 'zopzproxy' ? 'ZOPZ Proxy' : 
+                                         tab === 'showcase' ? 'Showcase' : 'Contact'}
+                                    </button>
+                                ))}
+                            </div>
+                        </nav>
+
+                        <div className="tab-content">
+                            {activeTab === 'zopzC2' && (
+                                <div>
+                                    <PlanCard
+                                        title="ZOPZ C2 Basic Plans"
+                                        plans={plansData.zopzC2.filter((plan) => plan.type === 'Basic')}
+                                    />
+                                    <PlanCard
+                                        title="HomeHolder Plans"
+                                        plans={plansData.zopzC2.filter((plan) => plan.type === 'HomeHolder')}
+                                    />
+                                    <PlanCard
+                                        title="5 Day HomeHolder Plans"
+                                        plans={plansData.zopzC2.filter((plan) => plan.type === '5 Day HomeHolder')}
+                                    />
+                                    <PlanCard
+                                        title="Monthly Add-ons"
+                                        plans={plansData.zopzC2.filter((plan) => plan.type === 'Add-on')}
+                                    />
+                                    <PlanCard
+                                        title="Lifetime Add-ons"
+                                        plans={plansData.zopzC2.filter((plan) => plan.type === 'Lifetime Add-on')}
+                                    />
+                                    <div className="payment-methods">
+                                        <h2 className="section-title">Payment Methods</h2>
+                                        <p className="text-lg text-gray-300">Cashapp • Venmo • Crypto</p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {activeTab === 'zopzAPI' && (
+                                <div>
+                                    <PlanCard
+                                        title="ZOPZ API Basic Plans"
+                                        plans={plansData.zopzAPI.filter((plan) => plan.type === 'Basic')}
+                                    />
+                                    <PlanCard
+                                        title="HomeHolder Plans"
+                                        plans={plansData.zopzAPI.filter((plan) => plan.type === 'HomeHolder')}
+                                    />
+                                    <PlanCard
+                                        title="5 Day HomeHolder Plans"
+                                        plans={plansData.zopzAPI.filter((plan) => plan.type === '5 Day HomeHolder')}
+                                    />
+                                    <PlanCard
+                                        title="Monthly Add-ons"
+                                        plans={plansData.zopzAPI.filter((plan) => plan.type === 'Add-on')}
+                                    />
+                                    <PlanCard
+                                        title="Lifetime Add-ons"
+                                        plans={plansData.zopzAPI.filter((plan) => plan.type === 'Lifetime Add-on')}
+                                    />
+                                    <div className="payment-methods">
+                                        <h2 className="section-title">Payment Methods</h2>
+                                        <p className="text-lg text-gray-300">Cashapp • Venmo • Crypto</p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {activeTab === 'zopzTLO' && (
+                                <div className="professional-card p-12 max-w-4xl mx-auto">
+                                    <h2 className="section-title">ZOPZ TLO</h2>
+                                    <p className="text-lg text-gray-300 mb-8 text-center leading-relaxed">
+                                        The most robust data-searching tools, making it effortless to browse public information online.
+                                    </p>
+                                    <div className="grid-layout">
+                                        {plansData.zopzTLO.map((plan, index) => (
+                                            <div key={index} className="professional-card">
+                                                <div className="stats-container">
+                                                    <h3 className="text-lg font-semibold mb-3 text-white">{plan.name}</h3>
+                                                    <div className="mb-3">
+                                                        <div className="stats-number">∞</div>
+                                                        <div className="stats-label">Searches</div>
+                                                    </div>
+                                                    <div className="price-tag">{plan.price}</div>
+                                                    <div className="mt-6">
+                                                        <a
+                                                            href="https://t.me/+jbh2JzEl8iI5MmUx"
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="primary-button"
+                                                        >
+                                                            Get Started
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {activeTab === 'zopzCNC' && (
+                                <div className="professional-card p-12 max-w-4xl mx-auto">
+                                    <h2 className="section-title">ZOPZ CNC</h2>
+                                    <p className="text-lg text-gray-300 mb-8 text-center leading-relaxed">
+                                        Advanced CNC control system with comprehensive features and real-time monitoring capabilities.
+                                    </p>
+
+
+                                    <div className="grid-layout">
+                                        {plansData.zopzCNC.map((plan, index) => (
+                                            <div key={index} className="professional-card">
+                                                <div className="stats-container">
+                                                    <h3 className="text-lg font-semibold mb-3 text-white">{plan.name}</h3>
+                                                    {plan.type && <div className="badge">{plan.type}</div>}
+                                                    <div className="price-tag">{plan.price}</div>
+                                                    <div className="mt-6">
+                                                        <a
+                                                            href="https://t.me/+4GM4Vn1q8YA3MWNh"
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="primary-button"
+                                                        >
+                                                            Get Started
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    
+                                    <div className="professional-card p-6 mt-8">
+                                        <h3 className="text-xl font-semibold mb-4 text-center text-white">What We Offer</h3>
+                                        <div className="text-center">
+                                            <a 
+                                                href="https://pastebin.com/QWhPEC3B" 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="primary-button"
+                                            >
+                                                View Features
+                                            </a>
+                                            <p className="text-gray-400 mt-4">
+                                                Complete feature list and documentation available
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {activeTab === 'zopzproxy' && (
+                                <div className="professional-card p-12 max-w-5xl mx-auto">
+                                    <h2 className="section-title">ZOPZ Proxy</h2>
+                                    <p className="text-lg text-gray-300 mb-8 text-center leading-relaxed">
+                                        Fast, reliable, and scalable backend proxy service with unlimited concurrents and DDoS protection.
+                                    </p>
+                                    
+                                    <div className="contact-grid mb-8">
+                                        <div className="professional-card p-6">
+                                            <h3 className="text-xl font-semibold mb-4 text-center text-white">Pricing</h3>
+                                            <div className="space-y-4">
+                                                <div className="contact-item">
+                                                    <div className="font-semibold mb-2">Unprotected Port</div>
+                                                    <div className="price-tag">$10/month</div>
+                                                </div>
+                                                <div className="contact-item">
+                                                    <div className="font-semibold mb-2">Protected Port</div>
+                                                    <div className="price-tag">$15/month</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="professional-card p-6">
+                                            <h3 className="text-xl font-semibold mb-4 text-center text-white">Key Features</h3>
+                                            <ul className="feature-list text-gray-300">
+                                                <li>Unlimited Concurrents per Port</li>
+                                                <li>High-Speed Routing</li>
+                                                <li>Stable Connections</li>
+                                                <li>DDoS Protection Available</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div className="contact-grid mb-8">
+                                        <div className="professional-card p-6">
+                                            <h3 className="text-xl font-semibold mb-4 text-center text-white">Supported Protocols</h3>
+                                            <ul className="feature-list text-gray-300">
+                                                <li>SSH - Secure shell access</li>
+                                                <li>RAW - Basic TCP/UDP relay</li>
+                                                <li>TELNET - Legacy support</li>
+                                                <li>MINECRAFT - Game server backend</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div className="professional-card p-6">
+                                            <h3 className="text-xl font-semibold mb-4 text-center text-white">Available Locations</h3>
+                                            <div className="resource-grid">
+                                                <div className="resource-item">
+                                                    <div className="text-2xl mb-2">🇨🇦</div>
+                                                    <div>Canada</div>
+                                                </div>
+                                                <div className="resource-item">
+                                                    <div className="text-2xl mb-2">🇺🇸</div>
+                                                    <div>USA</div>
+                                                </div>
+                                                <div className="resource-item">
+                                                    <div className="text-2xl mb-2">🇫🇷</div>
+                                                    <div>France</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="text-center">
+                                        <a
+                                            href="https://t.me/+4GM4Vn1q8YA3MWNh"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="primary-button"
+                                        >
+                                            Get Started
+                                        </a>
+                                        <p className="text-gray-400 mt-4">
+                                            Contact <a href="https://t.me/+4GM4Vn1q8YA3MWNh" target="_blank" rel="noopener noreferrer" className="contact-link">Click Here</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {activeTab === 'showcase' && (
+                                <div id="showcase">
+                                    <h2 className="section-title">Service Showcase</h2>
+                                    <p className="text-lg text-gray-300 mb-12 text-center leading-relaxed max-w-3xl mx-auto">
+                                        Discover the power and flexibility of ZOPZ services through our comprehensive platform.
+                                    </p>
+                                    <div className="grid-layout">
+                                        {showcaseData.map((item, index) => (
+                                            <ShowcaseCard
+                                                key={index}
+                                                title={item.title}
+                                                icon={item.icon}
+                                                image={item.image}
+                                                description={item.description}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {activeTab === 'contact' && (
+                                <div className="professional-card p-12 max-w-4xl mx-auto">
+                                    <h2 className="section-title">Contact Us</h2>
+                                    
+                                    <div className="contact-grid mb-8">
+                                        <div className="professional-card p-6">
+                                            <h3 className="text-xl font-semibold mb-4 text-center text-white">Direct Contact</h3>
+                                            <div className="space-y-4">
+                                                <div className="contact-item">
+                                                    <div className="font-semibold mb-2">Discord</div>
+                                                    <div className="contact-link">zopz.</div>
+                                                </div>
+                                                <div className="contact-item">
+                                                    <div className="font-semibold mb-2">Instagram</div>
+                                                    <div className="contact-link">zopzc2</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="professional-card p-6">
+                                            <h3 className="text-xl font-semibold mb-4 text-center text-white">Service Channels</h3>
+                                            <div className="space-y-3">
+                                                <a href="https://t.me/+4GM4Vn1q8YA3MWNh" target="_blank" rel="noopener noreferrer" className="contact-item block contact-link">ZOPZ API Channel</a>
+                                                <a href="https://t.me/+4GM4Vn1q8YA3MWNh" target="_blank" rel="noopener noreferrer" className="contact-item block contact-link">ZOPZ C2 Channel</a>
+                                                <a href="https://t.me/+jbh2JzEl8iI5MmUx" target="_blank" rel="noopener noreferrer" className="contact-item block contact-link">ZOPZ TLO Channel</a>
+                                                <a href="https://t.me/+4GM4Vn1q8YA3MWNh" target="_blank" rel="noopener noreferrer" className="contact-item block contact-link">ZOPZ CNC Channel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="professional-card p-6">
+                                        <h3 className="text-xl font-semibold mb-4 text-center text-white">Additional Resources</h3>
+                                        <div className="resource-grid">
+                                            <a href="https://t.me/zopzvouches" target="_blank" rel="noopener noreferrer" className="resource-item contact-link">
+                                                <div className="text-2xl mb-2">⭐</div>
+                                                <div>Service Vouches</div>
+                                            </a>
+                                            <a href="https://zopzsniff.xyz/" target="_blank" rel="noopener noreferrer" className="resource-item contact-link">
+                                                <div className="text-2xl mb-2">🌐</div>
+                                                <div>ZOPZ SNIFF Site</div>
+                                            </a>
+                                            <a href="https://discord.gg/NZzhYwEBHE" target="_blank" rel="noopener noreferrer" className="resource-item contact-link">
+                                                <div className="text-2xl mb-2">💬</div>
+                                                <div>Discord Server</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

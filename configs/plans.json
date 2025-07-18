@@ -1,0 +1,17 @@
+{
+  "owner_cut": 60,
+  "1": { "concurrents": 1, "maxTime": 60, "price": 20, "Time": "30" },
+  "2": { "concurrents": 3, "maxTime": 120, "price": 40, "Time": "30" },
+  "3": { "concurrents": 4, "maxTime": 300, "price": 80, "Time": "30" },
+  "4": { "concurrents": 5, "maxTime": 86400, "price": 60, "Time": "30" },
+  "5": { "concurrents": 6, "maxTime": 86400, "price": 70, "Time": "30" },
+  "6": { "concurrents": 7, "maxTime": 86400, "price": 80, "Time": "30" },
+  "7": { "concurrents": 10, "maxTime": 86400, "price": 100, "Time": "30" },
+  "8": { "concurrents": 3, "maxTime": 432000, "price": 60, "Time": "30" },
+  "9": { "concurrents": 6, "maxTime": 432000, "price": 120, "Time": "30" },
+  "10": { "concurrents": 7, "maxTime": 432000, "price": 140, "Time": "30" },
+  "11": { "concurrents": 10, "maxTime": 432000, "price": 180, "Time": "30" },
+  "12": { "concurrents": 1, "maxTime": 60, "price": 250, "Time": "Lifetime" },
+  "13": { "concurrents": 3, "maxTime": 120, "price": 300, "Time": "Lifetime" }, 
+  "14": { "concurrents": 4, "maxTime": 300, "price": 500, "Time": "Lifetime" }
+}

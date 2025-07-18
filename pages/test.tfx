@@ -1,0 +1,14 @@
+{user.username}              - Username    
+{user.role}                  - Role  
+{user.admin}                 - Admin  
+{user.reseller}              - Reseller  
+{user.vip}                   - VIP  
+{user.expiry}                - Expiry  
+{user.maxTime}               - Max Time  
+{user.concurrents}           - Concurrents  
+{user.cooldown}              - Cooldown  
+{user.api}                   - API  
+{user.spambypass}            - Spam Bypass  
+{user.blacklistbypass}       - Blacklist Bypass  
+{user.homeholder}            - Homeholder  
+{user.banned}                - Banned  

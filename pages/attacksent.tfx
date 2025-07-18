@@ -1,0 +1,13 @@
+[2J[H[8;24;80t[97mAttack Details[38;5;39m:[97m
+   Status:  [[38;5;46mAttack Successfully Sent[97m]
+   Host:    [[38;5;39m{result.target.host}[97m]
+   Port:    [[38;5;39m{result.target.port}[97m]
+   Time:    [[38;5;39m{result.target.duration}[97m]
+   Method:  [[38;5;39m{command}[97m]
+   Sent On: [[38;5;39m{result.target.time_sent}[97m]
+
+Target Details[38;5;39m:[97m
+   ASN:     [[38;5;39m{result.target.asn}[97m]
+   ORG:     [[38;5;39m{result.target.org}[97m]
+   COUNTRY: [[38;5;39m{result.target.country_code}[97m]
+

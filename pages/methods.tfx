@@ -1,0 +1,16 @@
+[2J[H[8;24;100t[38;5;39mHold Network[97m:
+[38;5;39m - [97mhold           [38;5;39m-[97m   DNS Amplification (Raw UDP-based) (W) ICMP, DHCP Bypass Amplification Flood[38;5;39m.
+[38;5;39mBasic Network[97m:
+[38;5;39m - [97mdns            [38;5;39m-[97m   DNS Amplification Flood (w) Very Large Byte Size [97m[[38;5;46mHigh gbit/s[97m][97[38;5;39m.  
+[38;5;39m - [97mgame           [38;5;39m-[97m   UDP Amplification Mixed With UDP, STUN, VSE, 1 and 2 Headers [97m[[38;5;46mHigh gbit/s[97m][97[38;5;39m.
+[38;5;39m - [97movh            [38;5;39m-[97m   Optimized To Bypass OVH's Firewalls Attack Vectors "psh, ack"[38;5;39m.     
+[38;5;39m - [97mhttp           [38;5;39m-[97m   High Request Per Second Flood - "HTTP-DDOS"[38;5;39m.                       
+[38;5;39mVip Network[97m:
+[38;5;39m - [97mgudp           [38;5;39m-[97m   High Volume, Generic UDP Flood [97m[[38;5;46mHigh gbit/s[97m][38;5;39m.             
+[38;5;39m - [97mdiscord        [38;5;39m-[97m   Spoofed Traffic Made For Bypassing Discord Calls[38;5;39m.           
+[38;5;39m - [97mtcp            [38;5;39m-[97m   Optimized For Bypassing TCP Targets[97m, [97mAttack Vectors [97m"[97mSYN", [97m"[97mACK"[97[38;5;39m.
+[38;5;39m - [97mbypass         [38;5;39m-[97m   Bypass made for all L7 protections, UAM, BROWSER, TLS, HTTP[38;5;39m.
+[38;5;39mAdmin[97m: 
+[38;5;39m - [97mstopall        [38;5;39m-[97m   Stops All Attacks Ongoing, via spoofs. only for admin[38;5;39m.
+[38;5;39mPreset[97m: [38;5;39m[97mhold [38;5;39m<[97mtarget[38;5;39m> <[97mport[38;5;39m> [38;5;39m<[97mtime[38;5;39m>
+[38;5;39mExample[97m: [38;5;39m[97mhold 70.70.70.7 53 120
