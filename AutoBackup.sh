@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DISCORD_WEBHOOK="https://discord.com/api/webhooks/1377527073211678800/ocAGaVhKwImoavarhUBd2NrbRsGnfjgTqis2s_njkWbNpbxgDT4sy22yKmy3GXMnPt6Z"
+DISCORD_WEBHOOK="https://discord.com/api/webhooks/1377527073211678800/ocAGaVhKwImoavqruUBd2NrbRsGnfjgTqis2s_njkWbNpbxgDT4sy22yKmy3GXMnPt6Z"
 CNC_DIRECTORY="/root/ZOPZCNC"
 ZIP_PASSWORD="1590"
 LOG_FILE="/var/log/backup.log"
